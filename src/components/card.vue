@@ -67,7 +67,7 @@ img{
   z-index: 1;
   top: 0;
   left: 0;
-  background-color: rgba(0, 0, 0, 0.7);
+  background-color: rgba(0, 0, 0, 0.55);
   width: 40px;
   height: 40px;
   pointer-events: none;

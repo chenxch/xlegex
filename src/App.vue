@@ -84,7 +84,11 @@ function handleSelect(node: CardNode) {
     }
   }
   else {
-    selectedNodes.value.push(node)
+    const index = selectedNodes.value.findIndex(o => o.type === node.type)
+    if (index > -1)
+      selectedNodes.value.splice(index, 0, node)
+    else
+      selectedNodes.value.push(node)
   }
 
   if (selectedNodes.value.length === 7) {
