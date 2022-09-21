@@ -16,6 +16,7 @@
   },
   "devDependencies": {
     "@antfu/eslint-config": "^0.26.3",
+    "@iconify-json/carbon": "^1.1.8",
     "@types/lodash-es": "^4.17.6",
     "@vitejs/plugin-vue": "^3.1.0",
     "eslint": "^8.23.1",

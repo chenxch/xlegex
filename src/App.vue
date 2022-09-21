@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import { nextTick, ref } from 'vue'
 import { ceil, floor, random, shuffle } from 'lodash-es'
 import Card from './components/card.vue'
 
-const itemTypes = [1, 2, 3, 4, 5, 6, 7]
+const itemTypes = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
 const num = 6
 let itemList: number[] = []
 const selectedNodes = ref<CardNode[]>([])
@@ -72,6 +72,8 @@ updateState()
 console.log(nodes.value)
 
 function handleSelect(node: CardNode) {
+  if (selectedNodes.value.length === 7)
+    return
   node.state = 2
   const index = nodes.value.findIndex(o => o.id === node.id)
   nodes.value.splice(index, 1)
@@ -83,6 +85,13 @@ function handleSelect(node: CardNode) {
   }
   else {
     selectedNodes.value.push(node)
+  }
+
+  if (selectedNodes.value.length === 7) {
+    setTimeout(() => {
+      alert('槽位已满, 广告开发中')
+      window.location.reload()
+    }, 200)
   }
 }
 </script>
@@ -98,15 +107,26 @@ function handleSelect(node: CardNode) {
         @click-card="handleSelect"
       />
     </div>
-    <div fixed bottom-80px left-35px flex border="~ 4px dashed #000" w-320px h-44px>
-      <Card
-        v-for="item in selectedNodes" :key="item.id" :node="item"
-        is-dock
-        @click-card="handleSelect"
-      />
+    <div fixed bottom-80px left-0 w-full flex items-center justify-center>
+      <div border="~ 4px dashed #000" w-295px h-44px flex>
+        <Card
+          v-for="item in selectedNodes" :key="item.id" :node="item"
+          is-dock
+          @click-card="handleSelect"
+        />
+      </div>
     </div>
-    <div fixed bottom-0 right-10px color="#000" fw-600>
+    <div fixed bottom-20px w-full left-0 color="#000" fw-600 center>
       by: Xc
+      <a
+        class="icon-btn"
+        color="#000"
+        i-carbon-logo-github
+        rel="noreferrer"
+        href="https://github.com/chenxch"
+        target="_blank"
+        title="GitHub"
+      />
     </div>
   </div>
 </template>

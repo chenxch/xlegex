@@ -34,6 +34,11 @@ function handleClick() {
     <img v-if="node.type === 5" src="../assets/5.jpg" width="40" height="40">
     <img v-if="node.type === 6" src="../assets/6.jpg" width="40" height="40">
     <img v-if="node.type === 7" src="../assets/7.jpg" width="40" height="40">
+    <img v-if="node.type === 8" src="../assets/8.jpg" width="40" height="40">
+    <img v-if="node.type === 9" src="../assets/9.jpg" width="40" height="40">
+    <img v-if="node.type === 10" src="../assets/10.jpg" width="40" height="40">
+    <img v-if="node.type === 11" src="../assets/11.jpg" width="40" height="40">
+    <img v-if="node.type === 12" src="../assets/12.jpg" width="40" height="40">
     <div v-if="isFreeze" class="mask" />
   </div>
 </template>
