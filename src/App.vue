@@ -3,8 +3,8 @@ import { ref } from 'vue'
 import { ceil, floor, random, shuffle } from 'lodash-es'
 import Card from './components/card.vue'
 
-const itemTypes = [1, 2, 3, 4, 5]
-const num = 5
+const itemTypes = [1, 2, 3, 4, 5, 6, 7]
+const num = 6
 let itemList: number[] = []
 const selectedNodes = ref<CardNode[]>([])
 for (let i = 0; i < 3 * num; i++)

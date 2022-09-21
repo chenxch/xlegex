@@ -32,6 +32,8 @@ function handleClick() {
     <img v-if="node.type === 3" src="../assets/3.jpg" width="40" height="40">
     <img v-if="node.type === 4" src="../assets/4.jpg" width="40" height="40">
     <img v-if="node.type === 5" src="../assets/5.jpg" width="40" height="40">
+    <img v-if="node.type === 6" src="../assets/6.jpg" width="40" height="40">
+    <img v-if="node.type === 7" src="../assets/7.jpg" width="40" height="40">
     <div v-if="isFreeze" class="mask" />
   </div>
 </template>
