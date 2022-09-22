@@ -55,6 +55,7 @@ const {
       </button>
     </div>
     <div w-full color="#000" fw-600 text-center pb-10px>
+      <span mr-20px>designer: Teacher Face</span>
       by: Xc
       <a
         class="icon-btn"
