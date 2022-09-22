@@ -8,7 +8,5 @@ export default defineConfig({
     vue(),
     Unocss(),
   ],
-  build: {
-    outDir: 'docs',
-  },
+  base: process.env.NODE_ENV === 'production' ? '/<Github repo>/' : '/',
 })
