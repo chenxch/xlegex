@@ -8,6 +8,7 @@ const histroyList = ref<CardNode[]>([])
 const backFlag = ref(false)
 const removeFlag = ref(false)
 const removeList = ref<CardNode[]>([])
+const preNode = ref<CardNode | null>(null)
 
 const itemTypes = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13]
 const num = 6
@@ -91,6 +92,7 @@ function handleSelect(node: CardNode) {
     return
   node.state = 2
   histroyList.value.push(node)
+  preNode.value = node
   const index = nodes.value.findIndex(o => o.id === node.id)
   if (index > -1)
     nodes.value.splice(index, 1)
@@ -99,6 +101,7 @@ function handleSelect(node: CardNode) {
       const index = selectedNodes.value.findIndex(o => o.type === node.type)
       selectedNodes.value.splice(index, 1)
     }
+    preNode.value = null
   }
   else {
     const index = selectedNodes.value.findIndex(o => o.type === node.type)
@@ -124,9 +127,10 @@ function handleSelectRemove(node: CardNode) {
 }
 
 function handleBack() {
-  const node = histroyList.value.pop()
+  const node = preNode.value
   if (!node)
     return
+  preNode.value = null
   backFlag.value = true
   node.state = 0
   nodes.value.push(node)
@@ -140,6 +144,7 @@ function handleRemove() {
   if (selectedNodes.value.length < 3)
     return
   removeFlag.value = true
+  preNode.value = null
   for (let i = 0; i < 3; i++) {
     const node = selectedNodes.value.pop()
     if (!node)
