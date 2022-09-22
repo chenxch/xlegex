@@ -8,4 +8,7 @@ export default defineConfig({
     vue(),
     Unocss(),
   ],
+  build: {
+    outDir: 'docs',
+  },
 })
