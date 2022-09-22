@@ -3,7 +3,7 @@ import { computed } from 'vue'
 
 interface Props {
   node: CardNode
-  isDock: boolean
+  isDock?: boolean
 }
 const props = defineProps<Props>()
 const emit = defineEmits(['clickCard'])
@@ -27,18 +27,19 @@ function handleClick() {
   >
     <!-- {{ item.zIndex }}-{{ item.type }} -->
     <!-- {{ node.id }} -->
-    <img v-if="node.type === 1" src="../assets/1.jpg" width="40" height="40">
-    <img v-if="node.type === 2" src="../assets/2.jpg" width="40" height="40">
-    <img v-if="node.type === 3" src="../assets/3.jpg" width="40" height="40">
-    <img v-if="node.type === 4" src="../assets/4.jpg" width="40" height="40">
-    <img v-if="node.type === 5" src="../assets/5.jpg" width="40" height="40">
-    <img v-if="node.type === 6" src="../assets/6.jpg" width="40" height="40">
-    <img v-if="node.type === 7" src="../assets/7.jpg" width="40" height="40">
-    <img v-if="node.type === 8" src="../assets/8.jpg" width="40" height="40">
-    <img v-if="node.type === 9" src="../assets/9.jpg" width="40" height="40">
-    <img v-if="node.type === 10" src="../assets/10.jpg" width="40" height="40">
-    <img v-if="node.type === 11" src="../assets/11.jpg" width="40" height="40">
-    <img v-if="node.type === 12" src="../assets/12.jpg" width="40" height="40">
+    <img v-if="node.type === 1" src="../assets/1.png" width="40" height="40">
+    <img v-if="node.type === 2" src="../assets/2.png" width="40" height="40">
+    <img v-if="node.type === 3" src="../assets/3.png" width="40" height="40">
+    <img v-if="node.type === 4" src="../assets/4.png" width="40" height="40">
+    <img v-if="node.type === 5" src="../assets/5.png" width="40" height="40">
+    <img v-if="node.type === 6" src="../assets/6.png" width="40" height="40">
+    <img v-if="node.type === 7" src="../assets/7.png" width="40" height="40">
+    <img v-if="node.type === 8" src="../assets/8.png" width="40" height="40">
+    <img v-if="node.type === 9" src="../assets/9.png" width="40" height="40">
+    <img v-if="node.type === 10" src="../assets/10.png" width="40" height="40">
+    <img v-if="node.type === 11" src="../assets/11.png" width="40" height="40">
+    <img v-if="node.type === 12" src="../assets/12.png" width="40" height="40">
+    <img v-if="node.type === 13" src="../assets/13.png" width="40" height="40">
     <div v-if="isFreeze" class="mask" />
   </div>
 </template>
