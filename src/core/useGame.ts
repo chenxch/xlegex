@@ -2,13 +2,14 @@ import type { Ref } from 'vue'
 import { onMounted, ref } from 'vue'
 import { ceil, floor, random, shuffle } from 'lodash-es'
 
-export function useGame(container: Ref<HTMLElement | undefined>, cardNum: number, layerNum: number) {
+export function useGame(container: Ref<HTMLElement | undefined>, cardNum: number, layerNum: number, trap = true) {
   const histroyList = ref<CardNode[]>([])
   const backFlag = ref(false)
   const removeFlag = ref(false)
   const removeList = ref<CardNode[]>([])
   const preNode = ref<CardNode | null>(null)
   const size = 40
+  const isTrap = trap && floor(random(0, 100)) !== 50
 
   const itemTypes = (new Array(cardNum).fill(0)).map((_, index) => index + 1)
   let itemList: number[] = []
@@ -16,6 +17,10 @@ export function useGame(container: Ref<HTMLElement | undefined>, cardNum: number
   for (let i = 0; i < 3 * layerNum; i++)
     itemList = [...itemList, ...itemTypes]
 
+  if (isTrap) {
+    const len = itemList.length
+    itemList.splice(len - cardNum, len)
+  }
   itemList = shuffle(itemList)
 
   let len = 0

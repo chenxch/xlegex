@@ -14,7 +14,7 @@ const {
   removeFlag,
   removeList,
   handleSelectRemove,
-} = useGame(container, 13, 6)
+} = useGame(container, 13, 6, true)
 </script>
 
 <template>
