@@ -122,12 +122,11 @@ export function useGame(container: Ref<HTMLElement | undefined>, cardNum: number
       else
         selectedNodes.value.push(node)
       clickCallback && clickCallback()
-    }
-
-    if (selectedNodes.value.length === 7) {
-      removeFlag.value = true
-      backFlag.value = true
-      loseCallback && loseCallback()
+      if (selectedNodes.value.length === 7) {
+        removeFlag.value = true
+        backFlag.value = true
+        loseCallback && loseCallback()
+      }
     }
 
     // setTimeout(() => {
