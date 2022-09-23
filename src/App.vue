@@ -2,10 +2,16 @@
 import { ref } from 'vue'
 import Card from './components/card.vue'
 import { useGame } from './core/useGame'
+import { fireworks } from './core/utils'
 
 const containerRef = ref<HTMLElement | undefined>()
 const clickAudioRef = ref<HTMLAudioElement | undefined>()
 const dropAudioRef = ref<HTMLAudioElement | undefined>()
+const winAudioRef = ref<HTMLAudioElement | undefined>()
+const loseAudioRef = ref<HTMLAudioElement | undefined>()
+
+const isWin = ref(false)
+
 const {
   nodes,
   selectedNodes,
@@ -16,7 +22,7 @@ const {
   removeFlag,
   removeList,
   handleSelectRemove,
-} = useGame(containerRef, 13, 6, true, handleClickCard, handleDropCard)
+} = useGame(containerRef, 13, 6, true, handleClickCard, handleDropCard, handleWin, handleLose)
 
 function handleClickCard() {
   clickAudioRef.value?.play()
@@ -24,6 +30,20 @@ function handleClickCard() {
 
 function handleDropCard() {
   dropAudioRef.value?.play()
+}
+
+function handleWin() {
+  winAudioRef.value?.play()
+  isWin.value = true
+  fireworks()
+}
+
+function handleLose() {
+  loseAudioRef.value?.play()
+  setTimeout(() => {
+    alert('槽位已满，再接再厉~')
+    window.location.reload()
+  }, 500)
 }
 </script>
 
@@ -39,6 +59,11 @@ function handleDropCard() {
           @click-card="handleSelect"
         />
       </div>
+      <transition name="bounce">
+        <div v-if="isWin" color="#000" flex items-center justify-center w-full text-28px fw-bold>
+          成功加入兔圈~
+        </div>
+      </transition>
     </div>
 
     <div text-center h-50px flex items-center justify-center>
@@ -100,11 +125,41 @@ function handleDropCard() {
       controls
       src="./audio/drop.mp3"
     />
+    <audio
+      ref="winAudioRef"
+      style="display: none;"
+      controls
+      src="./audio/win.mp3"
+    />
+    <audio
+      ref="loseAudioRef"
+      style="display: none;"
+      controls
+      src="./audio/lose.mp3"
+    />
   </div>
 </template>
 
 <style>
 body{
   background-color: #c3fe8b;
+}
+
+.bounce-enter-active {
+  animation: bounce-in 0.5s;
+}
+.bounce-leave-active {
+  animation: bounce-in 0.5s reverse;
+}
+@keyframes bounce-in {
+  0% {
+    transform: scale(0);
+  }
+  50% {
+    transform: scale(1.25);
+  }
+  100% {
+    transform: scale(1);
+  }
 }
 </style>

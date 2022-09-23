@@ -1,9 +1,9 @@
 import type { Ref } from 'vue'
 import { onMounted, ref } from 'vue'
 import { ceil, floor, random, shuffle } from 'lodash-es'
-import { fireworks } from './utils'
 
-export function useGame(container: Ref<HTMLElement | undefined>, cardNum: number, layerNum: number, trap = true, clickCallback?: () => void, dropCallback?: () => void) {
+export function useGame(container: Ref<HTMLElement | undefined>, cardNum: number, layerNum: number, trap = true,
+  clickCallback?: () => void, dropCallback?: () => void, winCallback?: () => void, loseCallback?: () => void) {
   const histroyList = ref<CardNode[]>([])
   const backFlag = ref(false)
   const removeFlag = ref(false)
@@ -98,8 +98,11 @@ export function useGame(container: Ref<HTMLElement | undefined>, cardNum: number
     const index = nodes.value.findIndex(o => o.id === node.id)
     if (index > -1) {
       nodes.value.splice(index, 1)
-      if (nodes.value.length === 0)
-        fireworks()
+      if (nodes.value.length === 0) {
+        removeFlag.value = true
+        backFlag.value = true
+        winCallback && winCallback()
+      }
     }
     if (selectedNodes.value.filter(s => s.type === node.type).length === 2) {
       selectedNodes.value.push(node)
@@ -122,11 +125,15 @@ export function useGame(container: Ref<HTMLElement | undefined>, cardNum: number
     }
 
     if (selectedNodes.value.length === 7) {
-      setTimeout(() => {
-        alert('槽位已满，再接再厉~')
-        window.location.reload()
-      }, 200)
+      removeFlag.value = true
+      backFlag.value = true
+      loseCallback && loseCallback()
     }
+
+    // setTimeout(() => {
+    //   alert('槽位已满，再接再厉~')
+    //   window.location.reload()
+    // }, 200)
   }
 
   function handleSelectRemove(node: CardNode) {
