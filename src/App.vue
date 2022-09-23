@@ -92,13 +92,13 @@ function handleDropCard() {
       ref="clickAudioRef"
       style="display: none;"
       controls
-      src="/audio/click.mp3"
+      src="./audio/click.mp3"
     />
     <audio
       ref="dropAudioRef"
       style="display: none;"
       controls
-      src="/audio/drop.mp3"
+      src="./audio/drop.mp3"
     />
   </div>
 </template>
