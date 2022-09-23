@@ -3,7 +3,9 @@ import { ref } from 'vue'
 import Card from './components/card.vue'
 import { useGame } from './core/useGame'
 
-const container = ref<HTMLElement | undefined>()
+const containerRef = ref<HTMLElement | undefined>()
+const clickAudioRef = ref<HTMLAudioElement | undefined>()
+const dropAudioRef = ref<HTMLAudioElement | undefined>()
 const {
   nodes,
   selectedNodes,
@@ -14,7 +16,15 @@ const {
   removeFlag,
   removeList,
   handleSelectRemove,
-} = useGame(container, 13, 6, true)
+} = useGame(containerRef, 13, 6, true, handleClickCard, handleDropCard)
+
+function handleClickCard() {
+  clickAudioRef.value?.play()
+}
+
+function handleDropCard() {
+  dropAudioRef.value?.play()
+}
 </script>
 
 <template>
@@ -22,7 +32,7 @@ const {
     <div text-44px text-center w-full color="#000" fw-600 h-60px flex items-center justify-center mt-10px>
       兔了个兔
     </div>
-    <div ref="container" flex-1 flex>
+    <div ref="containerRef" flex-1 flex>
       <div w-full relative flex-1>
         <Card
           v-for="item in nodes" :key="item.id" :node="item"
@@ -46,6 +56,7 @@ const {
         />
       </div>
     </div>
+
     <div h-50px flex items-center w-full justify-center>
       <button :disabled="removeFlag" mr-10px @click="handleRemove">
         移出前三个
@@ -77,6 +88,18 @@ const {
         />
         star buff</span>
     </div>
+    <audio
+      ref="clickAudioRef"
+      style="display: none;"
+      controls
+      src="/audio/click.mp3"
+    />
+    <audio
+      ref="dropAudioRef"
+      style="display: none;"
+      controls
+      src="/audio/drop.mp3"
+    />
   </div>
 </template>
 

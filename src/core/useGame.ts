@@ -3,7 +3,7 @@ import { onMounted, ref } from 'vue'
 import { ceil, floor, random, shuffle } from 'lodash-es'
 import { fireworks } from './utils'
 
-export function useGame(container: Ref<HTMLElement | undefined>, cardNum: number, layerNum: number, trap = true) {
+export function useGame(container: Ref<HTMLElement | undefined>, cardNum: number, layerNum: number, trap = true, clickCallback?: () => void, dropCallback?: () => void) {
   const histroyList = ref<CardNode[]>([])
   const backFlag = ref(false)
   const removeFlag = ref(false)
@@ -102,11 +102,15 @@ export function useGame(container: Ref<HTMLElement | undefined>, cardNum: number
         fireworks()
     }
     if (selectedNodes.value.filter(s => s.type === node.type).length === 2) {
-      for (let i = 0; i < 2; i++) {
-        const index = selectedNodes.value.findIndex(o => o.type === node.type)
-        selectedNodes.value.splice(index, 1)
-      }
-      preNode.value = null
+      selectedNodes.value.push(node)
+      setTimeout(() => {
+        for (let i = 0; i < 3; i++) {
+          const index = selectedNodes.value.findIndex(o => o.type === node.type)
+          selectedNodes.value.splice(index, 1)
+        }
+        preNode.value = null
+        dropCallback && dropCallback()
+      }, 100)
     }
     else {
       const index = selectedNodes.value.findIndex(o => o.type === node.type)
@@ -114,6 +118,7 @@ export function useGame(container: Ref<HTMLElement | undefined>, cardNum: number
         selectedNodes.value.splice(index, 0, node)
       else
         selectedNodes.value.push(node)
+      clickCallback && clickCallback()
     }
 
     if (selectedNodes.value.length === 7) {
