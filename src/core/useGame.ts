@@ -1,6 +1,7 @@
 import type { Ref } from 'vue'
 import { onMounted, ref } from 'vue'
 import { ceil, floor, random, shuffle } from 'lodash-es'
+import { fireworks } from './utils'
 
 export function useGame(container: Ref<HTMLElement | undefined>, cardNum: number, layerNum: number, trap = true) {
   const histroyList = ref<CardNode[]>([])
@@ -95,8 +96,11 @@ export function useGame(container: Ref<HTMLElement | undefined>, cardNum: number
     histroyList.value.push(node)
     preNode.value = node
     const index = nodes.value.findIndex(o => o.id === node.id)
-    if (index > -1)
+    if (index > -1) {
       nodes.value.splice(index, 1)
+      if (nodes.value.length === 0)
+        fireworks()
+    }
     if (selectedNodes.value.filter(s => s.type === node.type).length === 2) {
       for (let i = 0; i < 2; i++) {
         const index = selectedNodes.value.findIndex(o => o.type === node.type)
@@ -114,7 +118,7 @@ export function useGame(container: Ref<HTMLElement | undefined>, cardNum: number
 
     if (selectedNodes.value.length === 7) {
       setTimeout(() => {
-        alert('槽位已满, 广告开发中')
+        alert('槽位已满，再接再厉~')
         window.location.reload()
       }, 200)
     }

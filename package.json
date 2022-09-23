@@ -11,12 +11,14 @@
     "lint:fix": "eslint . --fix"
   },
   "dependencies": {
+    "canvas-confetti": "^1.5.1",
     "lodash-es": "^4.17.21",
     "vue": "^3.2.37"
   },
   "devDependencies": {
     "@antfu/eslint-config": "^0.26.3",
     "@iconify-json/carbon": "^1.1.8",
+    "@types/canvas-confetti": "^1.4.3",
     "@types/lodash-es": "^4.17.6",
     "@types/node": "^18.7.18",
     "@vitejs/plugin-vue": "^3.1.0",

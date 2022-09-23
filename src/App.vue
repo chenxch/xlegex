@@ -66,6 +66,16 @@ const {
         target="_blank"
         title="GitHub"
       />
+      <span
+        text-12px
+        color="#00000018"
+      >
+        <span
+          class="icon-btn"
+          text-2
+          i-carbon:arrow-up-left
+        />
+        star buff</span>
     </div>
   </div>
 </template>

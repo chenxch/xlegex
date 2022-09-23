@@ -3,9 +3,11 @@ lockfileVersion: 5.4
 specifiers:
   '@antfu/eslint-config': ^0.26.3
   '@iconify-json/carbon': ^1.1.8
+  '@types/canvas-confetti': ^1.4.3
   '@types/lodash-es': ^4.17.6
   '@types/node': ^18.7.18
   '@vitejs/plugin-vue': ^3.1.0
+  canvas-confetti: ^1.5.1
   eslint: ^8.23.1
   lodash-es: ^4.17.21
   typescript: ^4.6.4
@@ -15,12 +17,14 @@ specifiers:
   vue-tsc: ^0.40.4
 
 dependencies:
+  canvas-confetti: 1.5.1
   lodash-es: 4.17.21
   vue: 3.2.39
 
 devDependencies:
   '@antfu/eslint-config': 0.26.3_irgkl5vooow2ydyo6aokmferha
   '@iconify-json/carbon': 1.1.8
+  '@types/canvas-confetti': 1.4.3
   '@types/lodash-es': 4.17.6
   '@types/node': 18.7.18
   '@vitejs/plugin-vue': 3.1.0_vite@3.1.2+vue@3.2.39
@@ -324,6 +328,10 @@ packages:
     dependencies:
       estree-walker: 2.0.2
       picomatch: 2.3.1
+    dev: true
+
+  /@types/canvas-confetti/1.4.3:
+    resolution: {integrity: sha512-UwFPTsW1ZwVyo/ETp4hPSikSD7yl2V42E3VWBF5P/0+DHO4iajyceWv7hfNdZ2AX5tkZnuViiBWOqyCPohU2FQ==}
     dev: true
 
   /@types/json-schema/7.0.11:
@@ -916,6 +924,10 @@ packages:
     resolution: {integrity: sha512-P8BjAsXvZS+VIDUI11hHCQEv74YT67YUi5JJFNWIqL235sBmjX4+qx9Muvls5ivyNENctx46xQLQ3aTuE7ssaQ==}
     engines: {node: '>=6'}
     dev: true
+
+  /canvas-confetti/1.5.1:
+    resolution: {integrity: sha512-Ncz+oZJP6OvY7ti4E1slxVlyAV/3g7H7oQtcCDXgwGgARxPnwYY9PW5Oe+I8uvspYNtuHviAdgA0LfcKFWJfpg==}
+    dev: false
 
   /chalk/2.4.2:
     resolution: {integrity: sha512-Mti+f9lpJNcwF4tWV8/OrTTtF1gZi+f8FqlyAdouralcFWFQWF2+NgCHShjkCb+IFBLq9buZwE1xckQU4peSuQ==}
