@@ -8,6 +8,7 @@ export function useGame(container: Ref<HTMLElement | undefined>, cardNum: number
   const removeFlag = ref(false)
   const removeList = ref<CardNode[]>([])
   const preNode = ref<CardNode | null>(null)
+  const size = 40
 
   const itemTypes = (new Array(cardNum).fill(0)).map((_, index) => index + 1)
   let itemList: number[] = []
@@ -56,14 +57,14 @@ export function useGame(container: Ref<HTMLElement | undefined>, cardNum: number
           index: i,
           row,
           column,
-          top: height + (40 * row - 20 * index),
-          left: width + (40 * column - 20 * index),
+          top: height + (size * row - (size / 2) * index),
+          left: width + (size * column - (size / 2) * index),
           parents: [],
           state: 0,
         }
         const xy = [node.top, node.left]
         perFloorNodes.forEach((e) => {
-          if (Math.abs(e.top - xy[0]) <= 40 && Math.abs(e.left - xy[1]) <= 40)
+          if (Math.abs(e.top - xy[0]) <= size && Math.abs(e.left - xy[1]) <= size)
             e.parents.push(node)
         })
         floorNodes.push(node)

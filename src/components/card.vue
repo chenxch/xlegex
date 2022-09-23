@@ -27,19 +27,19 @@ function handleClick() {
   >
     <!-- {{ item.zIndex }}-{{ item.type }} -->
     <!-- {{ node.id }} -->
-    <img v-if="node.type === 1" src="../assets/1.png" width="40" height="40">
-    <img v-if="node.type === 2" src="../assets/2.png" width="40" height="40">
-    <img v-if="node.type === 3" src="../assets/3.png" width="40" height="40">
-    <img v-if="node.type === 4" src="../assets/4.png" width="40" height="40">
-    <img v-if="node.type === 5" src="../assets/5.png" width="40" height="40">
-    <img v-if="node.type === 6" src="../assets/6.png" width="40" height="40">
-    <img v-if="node.type === 7" src="../assets/7.png" width="40" height="40">
-    <img v-if="node.type === 8" src="../assets/8.png" width="40" height="40">
-    <img v-if="node.type === 9" src="../assets/9.png" width="40" height="40">
-    <img v-if="node.type === 10" src="../assets/10.png" width="40" height="40">
-    <img v-if="node.type === 11" src="../assets/11.png" width="40" height="40">
-    <img v-if="node.type === 12" src="../assets/12.png" width="40" height="40">
-    <img v-if="node.type === 13" src="../assets/13.png" width="40" height="40">
+    <img v-if="node.type === 1" src="../assets/tutu/1.png" width="40" height="40">
+    <img v-if="node.type === 2" src="../assets/tutu/2.png" width="40" height="40">
+    <img v-if="node.type === 3" src="../assets/tutu/3.png" width="40" height="40">
+    <img v-if="node.type === 4" src="../assets/tutu/4.png" width="40" height="40">
+    <img v-if="node.type === 5" src="../assets/tutu/5.png" width="40" height="40">
+    <img v-if="node.type === 6" src="../assets/tutu/6.png" width="40" height="40">
+    <img v-if="node.type === 7" src="../assets/tutu/7.png" width="40" height="40">
+    <img v-if="node.type === 8" src="../assets/tutu/8.png" width="40" height="40">
+    <img v-if="node.type === 9" src="../assets/tutu/9.png" width="40" height="40">
+    <img v-if="node.type === 10" src="../assets/tutu/10.png" width="40" height="40">
+    <img v-if="node.type === 11" src="../assets/tutu/11.png" width="40" height="40">
+    <img v-if="node.type === 12" src="../assets/tutu/12.png" width="40" height="40">
+    <img v-if="node.type === 13" src="../assets/tutu/13.png" width="40" height="40">
     <div v-if="isFreeze" class="mask" />
   </div>
 </template>
