@@ -25,7 +25,13 @@ const {
 } = useGame(containerRef, 13, 6, true, handleClickCard, handleDropCard, handleWin, handleLose)
 
 function handleClickCard() {
-  clickAudioRef.value?.play()
+  if (clickAudioRef.value?.paused) {
+    clickAudioRef.value.play()
+  }
+  else if (clickAudioRef.value) {
+    clickAudioRef.value.currentTime = 0
+    clickAudioRef.value.play()
+  }
 }
 
 function handleDropCard() {
