@@ -1,9 +1,14 @@
-import type { Ref } from 'vue'
 import { onMounted, ref } from 'vue'
 import { ceil, floor, random, shuffle } from 'lodash-es'
+const defaultGameConfig: GameConfig = {
+  cardNum: 4,
+  layerNum: 2,
+  trap: true,
+  delNode: false,
+}
 
-export function useGame(container: Ref<HTMLElement | undefined>, cardNum: number, layerNum: number, trap = true,
-  clickCallback?: () => void, dropCallback?: () => void, winCallback?: () => void, loseCallback?: () => void) {
+export function useGame(config: GameConfig) {
+  const { container, cardNum, layerNum, trap, delNode, events = {} } = { ...defaultGameConfig, ...config }
   const histroyList = ref<CardNode[]>([])
   const backFlag = ref(false)
   const removeFlag = ref(false)
@@ -97,11 +102,11 @@ export function useGame(container: Ref<HTMLElement | undefined>, cardNum: number
     preNode.value = node
     const index = nodes.value.findIndex(o => o.id === node.id)
     if (index > -1) {
-      nodes.value.splice(index, 1)
+      delNode && nodes.value.splice(index, 1)
       if (nodes.value.length === 0) {
         removeFlag.value = true
         backFlag.value = true
-        winCallback && winCallback()
+        events.winCallback && events.winCallback()
       }
     }
     if (selectedNodes.value.filter(s => s.type === node.type).length === 2) {
@@ -112,7 +117,7 @@ export function useGame(container: Ref<HTMLElement | undefined>, cardNum: number
           selectedNodes.value.splice(index, 1)
         }
         preNode.value = null
-        dropCallback && dropCallback()
+        events.dropCallback && events.dropCallback()
       }, 100)
     }
     else {
@@ -121,11 +126,11 @@ export function useGame(container: Ref<HTMLElement | undefined>, cardNum: number
         selectedNodes.value.splice(index, 0, node)
       else
         selectedNodes.value.push(node)
-      clickCallback && clickCallback()
+      events.clickCallback && events.clickCallback()
       if (selectedNodes.value.length === 7) {
         removeFlag.value = true
         backFlag.value = true
-        loseCallback && loseCallback()
+        events.loseCallback && events.loseCallback()
       }
     }
 
@@ -149,7 +154,7 @@ export function useGame(container: Ref<HTMLElement | undefined>, cardNum: number
     preNode.value = null
     backFlag.value = true
     node.state = 0
-    nodes.value.push(node)
+    delNode && nodes.value.push(node)
     const index = selectedNodes.value.findIndex(o => o.id === node.id)
     selectedNodes.value.splice(index, 1)
   }

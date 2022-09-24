@@ -22,14 +22,25 @@ const {
   removeFlag,
   removeList,
   handleSelectRemove,
-} = useGame(containerRef, 13, 6, true, handleClickCard, handleDropCard, handleWin, handleLose)
+} = useGame({
+  container: containerRef,
+  cardNum: 13,
+  layerNum: 6,
+  trap: true,
+  events: {
+    clickCallback: handleClickCard,
+    dropCallback: handleDropCard,
+    winCallback: handleWin,
+    loseCallback: handleLose,
+  },
+})
 
 function handleClickCard() {
   if (clickAudioRef.value?.paused) {
     clickAudioRef.value.play()
   }
   else if (clickAudioRef.value) {
-    clickAudioRef.value.currentTime = 0
+    clickAudioRef.value.load()
     clickAudioRef.value.play()
   }
 }
@@ -60,10 +71,15 @@ function handleLose() {
     </div>
     <div ref="containerRef" flex-1 flex>
       <div w-full relative flex-1>
-        <Card
-          v-for="item in nodes" :key="item.id" :node="item"
-          @click-card="handleSelect"
-        />
+        <template v-for="item in nodes" :key="item.id">
+          <transition>
+            <Card
+              v-if="[0, 1].includes(item.state)"
+              :node="item"
+              @click-card="handleSelect"
+            />
+          </transition>
+        </template>
       </div>
       <transition name="bounce">
         <div v-if="isWin" color="#000" flex items-center justify-center w-full text-28px fw-bold>
@@ -81,10 +97,15 @@ function handleLose() {
     </div>
     <div w-full flex items-center justify-center>
       <div border="~ 4px dashed #000" w-295px h-44px flex>
-        <Card
-          v-for="item in selectedNodes" :key="item.id" :node="item"
-          is-dock
-        />
+        <template v-for="item in selectedNodes" :key="item.id">
+          <transition name="bounce">
+            <Card
+              v-if="item.state === 2"
+              :node="item"
+              is-dock
+            />
+          </transition>
+        </template>
       </div>
     </div>
 
@@ -167,5 +188,29 @@ body{
   100% {
     transform: scale(1);
   }
+}
+
+.slide-fade-enter-active {
+  transition: all 0.2s ease-out;
+}
+
+.slide-fade-leave-active {
+  transition: all 0.2s cubic-bezier(1, 0.5, 0.8, 1);
+}
+
+.slide-fade-enter-from,
+.slide-fade-leave-to {
+  transform: translateY(25vh);
+  opacity: 0;
+}
+
+.v-enter-active,
+.v-leave-active {
+  transition: opacity 0.5s ease;
+}
+
+.v-enter-from,
+.v-leave-to {
+  opacity: 0;
 }
 </style>
