@@ -103,7 +103,7 @@ export function useGame(config: GameConfig) {
     const index = nodes.value.findIndex(o => o.id === node.id)
     if (index > -1) {
       delNode && nodes.value.splice(index, 1)
-      if (nodes.value.length === 0) {
+      if (delNode ? nodes.value.length === 0 : nodes.value.every(o => o.state > 0)) {
         removeFlag.value = true
         backFlag.value = true
         events.winCallback && events.winCallback()
