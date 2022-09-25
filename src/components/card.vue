@@ -1,13 +1,24 @@
 <script setup lang="ts">
 import { computed } from 'vue'
+const props = defineProps<Props>()
+const emit = defineEmits(['clickCard'])
+
+// 加载图片资源
+const modules = import.meta.glob('../assets/tutu/*.png', {
+  as: 'url',
+  import: 'default',
+  eager: true,
+})
+const IMG_MAP = Object.keys(modules).reduce((acc, cur) => {
+  const key = cur.replace('../assets/tutu/', '').replace('.png', '')
+  acc[key] = modules[cur]
+  return acc
+}, {} as Record<string, string>)
 
 interface Props {
   node: CardNode
   isDock?: boolean
 }
-const props = defineProps<Props>()
-const emit = defineEmits(['clickCard'])
-
 const isFreeze = computed(() => {
   return props.node.parents.length > 0 ? props.node.parents.some(o => o.state < 2) : false
 },
@@ -25,21 +36,9 @@ function handleClick() {
     :style="isDock ? {} : { position: 'absolute', zIndex: node.zIndex, top: `${node.top}px`, left: `${node.left}px` }"
     @click="handleClick"
   >
-    <!-- {{ item.zIndex }}-{{ item.type }} -->
+    <!-- {{ node.zIndex }}-{{ node.type }} -->
     <!-- {{ node.id }} -->
-    <img v-if="node.type === 1" src="../assets/tutu/1.png" width="40" height="40">
-    <img v-if="node.type === 2" src="../assets/tutu/2.png" width="40" height="40">
-    <img v-if="node.type === 3" src="../assets/tutu/3.png" width="40" height="40">
-    <img v-if="node.type === 4" src="../assets/tutu/4.png" width="40" height="40">
-    <img v-if="node.type === 5" src="../assets/tutu/5.png" width="40" height="40">
-    <img v-if="node.type === 6" src="../assets/tutu/6.png" width="40" height="40">
-    <img v-if="node.type === 7" src="../assets/tutu/7.png" width="40" height="40">
-    <img v-if="node.type === 8" src="../assets/tutu/8.png" width="40" height="40">
-    <img v-if="node.type === 9" src="../assets/tutu/9.png" width="40" height="40">
-    <img v-if="node.type === 10" src="../assets/tutu/10.png" width="40" height="40">
-    <img v-if="node.type === 11" src="../assets/tutu/11.png" width="40" height="40">
-    <img v-if="node.type === 12" src="../assets/tutu/12.png" width="40" height="40">
-    <img v-if="node.type === 13" src="../assets/tutu/13.png" width="40" height="40">
+    <img :src="IMG_MAP[node.type]" width="40" height="40" :alt="`${node.type}`">
     <div v-if="isFreeze" class="mask" />
   </div>
 </template>
