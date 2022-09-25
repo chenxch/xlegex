@@ -16,7 +16,11 @@ export function useGame(config: GameConfig) {
   const preNode = ref<CardNode | null>(null)
   const size = 40
   const isTrap = trap && floor(random(0, 100)) !== 50
+  const nodes = ref<CardNode[]>([])
+  const indexSet = new Set()
+  let perFloorNodes: CardNode[] = []
 
+  // 生成节点池
   const itemTypes = (new Array(cardNum).fill(0)).map((_, index) => index + 1)
   let itemList: number[] = []
   const selectedNodes = ref<CardNode[]>([])
@@ -27,8 +31,10 @@ export function useGame(config: GameConfig) {
     const len = itemList.length
     itemList.splice(len - cardNum, len)
   }
-  itemList = shuffle(itemList)
+  // 打乱节点
+  itemList = shuffle(shuffle(itemList))
 
+  // 初始化各个层级节点
   let len = 0
   let floorIndex = 1
   const floorList: number[][] = []
@@ -41,9 +47,91 @@ export function useGame(config: GameConfig) {
     floorIndex++
   }
 
-  const nodes = ref<CardNode[]>([])
-  const indexSet = new Set()
-  let perFloorNodes: CardNode[] = []
+  function updateState() {
+    nodes.value.forEach((o) => {
+      o.state = o.parents.every(p => p.state > 0) ? 1 : 0
+    })
+  }
+
+  function handleSelect(node: CardNode) {
+    if (selectedNodes.value.length === 7)
+      return
+    node.state = 2
+    histroyList.value.push(node)
+    preNode.value = node
+    const index = nodes.value.findIndex(o => o.id === node.id)
+    if (index > -1) {
+      delNode && nodes.value.splice(index, 1)
+      // 判断是否已经清空卡牌，即是否胜利
+      if (delNode ? nodes.value.length === 0 : nodes.value.every(o => o.state > 0)) {
+        removeFlag.value = true
+        backFlag.value = true
+        events.winCallback && events.winCallback()
+      }
+    }
+    // 判断是否有可以消除的节点
+    if (selectedNodes.value.filter(s => s.type === node.type).length === 2) {
+      selectedNodes.value.push(node)
+      // 为了动画效果添加延迟
+      setTimeout(() => {
+        for (let i = 0; i < 3; i++) {
+          const index = selectedNodes.value.findIndex(o => o.type === node.type)
+          selectedNodes.value.splice(index, 1)
+        }
+        preNode.value = null
+        events.dropCallback && events.dropCallback()
+      }, 100)
+    }
+    else {
+      const index = selectedNodes.value.findIndex(o => o.type === node.type)
+      if (index > -1)
+        selectedNodes.value.splice(index, 0, node)
+      else
+        selectedNodes.value.push(node)
+      events.clickCallback && events.clickCallback()
+      // 判断卡槽是否已满，即失败
+      if (selectedNodes.value.length === 7) {
+        removeFlag.value = true
+        backFlag.value = true
+        events.loseCallback && events.loseCallback()
+      }
+    }
+  }
+
+  function handleSelectRemove(node: CardNode) {
+    const index = removeList.value.findIndex(o => o.id === node.id)
+    if (index > -1)
+      removeList.value.splice(index, 1)
+    handleSelect(node)
+  }
+
+  function handleBack() {
+    const node = preNode.value
+    if (!node)
+      return
+    preNode.value = null
+    backFlag.value = true
+    node.state = 0
+    delNode && nodes.value.push(node)
+    const index = selectedNodes.value.findIndex(o => o.id === node.id)
+    selectedNodes.value.splice(index, 1)
+  }
+
+  function handleRemove() {
+  // 从selectedNodes.value中取出3个 到 removeList.value中
+
+    if (selectedNodes.value.length < 3)
+      return
+    removeFlag.value = true
+    preNode.value = null
+    for (let i = 0; i < 3; i++) {
+      const node = selectedNodes.value.shift()
+      if (!node)
+        return
+      removeList.value.push(node)
+    }
+  }
+
   onMounted(() => {
     const containerWidth = container.value!.clientWidth
     const containerHeight = container.value!.clientHeight
@@ -87,92 +175,6 @@ export function useGame(config: GameConfig) {
 
     updateState()
   })
-
-  function updateState() {
-    nodes.value.forEach((o) => {
-      o.state = o.parents.every(p => p.state > 0) ? 1 : 0
-    })
-  }
-
-  function handleSelect(node: CardNode) {
-    if (selectedNodes.value.length === 7)
-      return
-    node.state = 2
-    histroyList.value.push(node)
-    preNode.value = node
-    const index = nodes.value.findIndex(o => o.id === node.id)
-    if (index > -1) {
-      delNode && nodes.value.splice(index, 1)
-      if (delNode ? nodes.value.length === 0 : nodes.value.every(o => o.state > 0)) {
-        removeFlag.value = true
-        backFlag.value = true
-        events.winCallback && events.winCallback()
-      }
-    }
-    if (selectedNodes.value.filter(s => s.type === node.type).length === 2) {
-      selectedNodes.value.push(node)
-      setTimeout(() => {
-        for (let i = 0; i < 3; i++) {
-          const index = selectedNodes.value.findIndex(o => o.type === node.type)
-          selectedNodes.value.splice(index, 1)
-        }
-        preNode.value = null
-        events.dropCallback && events.dropCallback()
-      }, 100)
-    }
-    else {
-      const index = selectedNodes.value.findIndex(o => o.type === node.type)
-      if (index > -1)
-        selectedNodes.value.splice(index, 0, node)
-      else
-        selectedNodes.value.push(node)
-      events.clickCallback && events.clickCallback()
-      if (selectedNodes.value.length === 7) {
-        removeFlag.value = true
-        backFlag.value = true
-        events.loseCallback && events.loseCallback()
-      }
-    }
-
-    // setTimeout(() => {
-    //   alert('槽位已满，再接再厉~')
-    //   window.location.reload()
-    // }, 200)
-  }
-
-  function handleSelectRemove(node: CardNode) {
-    const index = removeList.value.findIndex(o => o.id === node.id)
-    if (index > -1)
-      removeList.value.splice(index, 1)
-    handleSelect(node)
-  }
-
-  function handleBack() {
-    const node = preNode.value
-    if (!node)
-      return
-    preNode.value = null
-    backFlag.value = true
-    node.state = 0
-    delNode && nodes.value.push(node)
-    const index = selectedNodes.value.findIndex(o => o.id === node.id)
-    selectedNodes.value.splice(index, 1)
-  }
-
-  function handleRemove() {
-  // 从selectedNodes.value中取出3个 到 removeList.value中
-
-    if (selectedNodes.value.length < 3)
-      return
-    removeFlag.value = true
-    preNode.value = null
-    for (let i = 0; i < 3; i++) {
-      const node = selectedNodes.value.shift()
-      if (!node)
-        return
-      removeList.value.push(node)
-    }
-  }
 
   return {
     nodes,
