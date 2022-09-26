@@ -26,7 +26,7 @@ const {
   container: containerRef,
   cardNum: 13,
   layerNum: 6,
-  trap: true,
+  trap: false,
   events: {
     clickCallback: handleClickCard,
     dropCallback: handleDropCard,
