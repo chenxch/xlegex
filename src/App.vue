@@ -65,11 +65,11 @@ function handleWin() {
     showTip.value = true
     setTimeout(() => {
       showTip.value = false
-    }, 3500)
+    }, 1500)
     setTimeout(() => {
       initData(LevelConfig[curLevel.value])
       curLevel.value++
-    }, 4000)
+    }, 2000)
   }
   else {
     isWin.value = true

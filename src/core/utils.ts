@@ -60,7 +60,7 @@ export function schoolPride() {
 export function basicCannon() {
   confetti({
     particleCount: 100,
-    spread: 70,
+    spread: 100,
     origin: { y: 0.6 },
   })
 }
