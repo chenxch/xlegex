@@ -1,14 +1,21 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import { onMounted, ref } from 'vue'
 import Card from './components/card.vue'
 import { useGame } from './core/useGame'
-import { fireworks } from './core/utils'
+import { basicCannon, schoolPride } from './core/utils'
 
 const containerRef = ref<HTMLElement | undefined>()
 const clickAudioRef = ref<HTMLAudioElement | undefined>()
 const dropAudioRef = ref<HTMLAudioElement | undefined>()
 const winAudioRef = ref<HTMLAudioElement | undefined>()
 const loseAudioRef = ref<HTMLAudioElement | undefined>()
+const curLevel = ref(1)
+const showTip = ref(false)
+const LevelConfig = [
+  { cardNum: 4, layerNum: 2, trap: false },
+  { cardNum: 9, layerNum: 3, trap: false },
+  { cardNum: 15, layerNum: 6, trap: false },
+]
 
 const isWin = ref(false)
 
@@ -22,10 +29,11 @@ const {
   removeFlag,
   removeList,
   handleSelectRemove,
+  initData,
 } = useGame({
   container: containerRef,
-  cardNum: 13,
-  layerNum: 6,
+  cardNum: 4,
+  layerNum: 2,
   trap: false,
   events: {
     clickCallback: handleClickCard,
@@ -51,8 +59,22 @@ function handleDropCard() {
 
 function handleWin() {
   winAudioRef.value?.play()
-  isWin.value = true
-  fireworks()
+  // fireworks()
+  if (curLevel.value < LevelConfig.length) {
+    basicCannon()
+    showTip.value = true
+    setTimeout(() => {
+      showTip.value = false
+    }, 3500)
+    setTimeout(() => {
+      initData(LevelConfig[curLevel.value])
+      curLevel.value++
+    }, 4000)
+  }
+  else {
+    isWin.value = true
+    schoolPride()
+  }
 }
 
 function handleLose() {
@@ -62,6 +84,10 @@ function handleLose() {
     window.location.reload()
   }, 500)
 }
+
+onMounted(() => {
+  initData()
+})
 </script>
 
 <template>
@@ -72,7 +98,7 @@ function handleLose() {
     <div ref="containerRef" flex-1 flex>
       <div w-full relative flex-1>
         <template v-for="item in nodes" :key="item.id">
-          <transition>
+          <transition name="slide-fade">
             <Card
               v-if="[0, 1].includes(item.state)"
               :node="item"
@@ -84,6 +110,11 @@ function handleLose() {
       <transition name="bounce">
         <div v-if="isWin" color="#000" flex items-center justify-center w-full text-28px fw-bold>
           成功加入兔圈~
+        </div>
+      </transition>
+      <transition name="bounce">
+        <div v-if="showTip" color="#000" flex items-center justify-center w-full text-28px fw-bold>
+          第{{ curLevel + 1 }}关
         </div>
       </transition>
     </div>

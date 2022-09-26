@@ -1,4 +1,4 @@
-import { onMounted, ref } from 'vue'
+import { ref } from 'vue'
 import { ceil, floor, random, shuffle } from 'lodash-es'
 const defaultGameConfig: GameConfig = {
   cardNum: 4,
@@ -7,45 +7,19 @@ const defaultGameConfig: GameConfig = {
   delNode: false,
 }
 
-export function useGame(config: GameConfig) {
-  const { container, cardNum, layerNum, trap, delNode, events = {} } = { ...defaultGameConfig, ...config }
+export function useGame(config: GameConfig): Game {
+  const { container, delNode, events = {}, ...initConfig } = { ...defaultGameConfig, ...config }
   const histroyList = ref<CardNode[]>([])
   const backFlag = ref(false)
   const removeFlag = ref(false)
   const removeList = ref<CardNode[]>([])
   const preNode = ref<CardNode | null>(null)
-  const size = 40
-  const isTrap = trap && floor(random(0, 100)) !== 50
   const nodes = ref<CardNode[]>([])
   const indexSet = new Set()
   let perFloorNodes: CardNode[] = []
-
-  // 生成节点池
-  const itemTypes = (new Array(cardNum).fill(0)).map((_, index) => index + 1)
-  let itemList: number[] = []
   const selectedNodes = ref<CardNode[]>([])
-  for (let i = 0; i < 3 * layerNum; i++)
-    itemList = [...itemList, ...itemTypes]
-
-  if (isTrap) {
-    const len = itemList.length
-    itemList.splice(len - cardNum, len)
-  }
-  // 打乱节点
-  itemList = shuffle(shuffle(itemList))
-
-  // 初始化各个层级节点
-  let len = 0
-  let floorIndex = 1
-  const floorList: number[][] = []
-  const itemLength = itemList.length
-  while (len <= itemLength) {
-    const maxFloorNum = floorIndex * floorIndex
-    const floorNum = ceil(random(maxFloorNum / 2, maxFloorNum))
-    floorList.push(itemList.splice(0, floorNum))
-    len += floorNum
-    floorIndex++
-  }
+  const size = 40
+  let floorList: number[][] = []
 
   function updateState() {
     nodes.value.forEach((o) => {
@@ -60,32 +34,37 @@ export function useGame(config: GameConfig) {
     histroyList.value.push(node)
     preNode.value = node
     const index = nodes.value.findIndex(o => o.id === node.id)
-    if (index > -1) {
+    if (index > -1)
       delNode && nodes.value.splice(index, 1)
-      // 判断是否已经清空卡牌，即是否胜利
-      if (delNode ? nodes.value.length === 0 : nodes.value.every(o => o.state > 0)) {
-        removeFlag.value = true
-        backFlag.value = true
-        events.winCallback && events.winCallback()
-      }
-    }
+
     // 判断是否有可以消除的节点
-    if (selectedNodes.value.filter(s => s.type === node.type).length === 2) {
-      selectedNodes.value.push(node)
+    const selectedSomeNode = selectedNodes.value.filter(s => s.type === node.type)
+    if (selectedSomeNode.length === 2) {
+      // 第二个节点索引
+      const secondIndex = selectedNodes.value.findIndex(o => o.id === selectedSomeNode[1].id)
+      selectedNodes.value.splice(secondIndex + 1, 0, node)
       // 为了动画效果添加延迟
       setTimeout(() => {
         for (let i = 0; i < 3; i++) {
-          const index = selectedNodes.value.findIndex(o => o.type === node.type)
-          selectedNodes.value.splice(index, 1)
+          // const index = selectedNodes.value.findIndex(o => o.type === node.type)
+          selectedNodes.value.splice(secondIndex - 1, 1)
         }
         preNode.value = null
-        events.dropCallback && events.dropCallback()
+        // 判断是否已经清空节点，即是否胜利
+        if (delNode ? nodes.value.length === 0 : nodes.value.every(o => o.state > 0)) {
+          removeFlag.value = true
+          backFlag.value = true
+          events.winCallback && events.winCallback()
+        }
+        else {
+          events.dropCallback && events.dropCallback()
+        }
       }, 100)
     }
     else {
       const index = selectedNodes.value.findIndex(o => o.type === node.type)
       if (index > -1)
-        selectedNodes.value.splice(index, 0, node)
+        selectedNodes.value.splice(index + 1, 0, node)
       else
         selectedNodes.value.push(node)
       events.clickCallback && events.clickCallback()
@@ -132,7 +111,44 @@ export function useGame(config: GameConfig) {
     }
   }
 
-  onMounted(() => {
+  function initData(config?: GameConfig | null) {
+    const { cardNum, layerNum, trap } = { ...initConfig, ...config }
+    histroyList.value = []
+    backFlag.value = false
+    removeFlag.value = false
+    removeList.value = []
+    preNode.value = null
+    nodes.value = []
+    indexSet.clear()
+    perFloorNodes = []
+    selectedNodes.value = []
+    floorList = []
+    const isTrap = trap && floor(random(0, 100)) !== 50
+
+    // 生成节点池
+    const itemTypes = (new Array(cardNum).fill(0)).map((_, index) => index + 1)
+    let itemList: number[] = []
+    for (let i = 0; i < 3 * layerNum; i++)
+      itemList = [...itemList, ...itemTypes]
+
+    if (isTrap) {
+      const len = itemList.length
+      itemList.splice(len - cardNum, len)
+    }
+    // 打乱节点
+    itemList = shuffle(shuffle(itemList))
+
+    // 初始化各个层级节点
+    let len = 0
+    let floorIndex = 1
+    const itemLength = itemList.length
+    while (len <= itemLength) {
+      const maxFloorNum = floorIndex * floorIndex
+      const floorNum = ceil(random(maxFloorNum / 2, maxFloorNum))
+      floorList.push(itemList.splice(0, floorNum))
+      len += floorNum
+      floorIndex++
+    }
     const containerWidth = container.value!.clientWidth
     const containerHeight = container.value!.clientHeight
     const width = containerWidth / 2
@@ -174,17 +190,18 @@ export function useGame(config: GameConfig) {
     })
 
     updateState()
-  })
+  }
 
   return {
     nodes,
     selectedNodes,
-    handleSelect,
-    handleBack,
-    backFlag,
-    handleRemove,
     removeFlag,
     removeList,
+    backFlag,
+    handleSelect,
+    handleBack,
+    handleRemove,
     handleSelectRemove,
+    initData,
   }
 }

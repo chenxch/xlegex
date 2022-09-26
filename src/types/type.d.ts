@@ -1,3 +1,15 @@
+interface Game {
+  nodes: Ref<CardNode[]>;
+  selectedNodes: Ref<CardNode[]>;
+  removeList: Ref<CardNode[]>;
+  removeFlag: Ref<boolean>;
+  backFlag: Ref<boolean>;
+  handleSelect: (node: CardNode) => void;
+  handleSelectRemove: (node: CardNode) => void;
+  handleBack: () => void;
+  handleRemove: () => void;
+  initData: (config?: GameConfig) => void;
+}
 interface GameConfig {
   container?: Ref<HTMLElement | undefined>,   // cardNode容器
   cardNum: number,                            // card类型数量
