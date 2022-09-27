@@ -51,7 +51,7 @@ export function useGame(config: GameConfig): Game {
         }
         preNode.value = null
         // 判断是否已经清空节点，即是否胜利
-        if (delNode ? nodes.value.length === 0 : nodes.value.every(o => o.state > 0)) {
+        if (delNode ? nodes.value.length === 0 : nodes.value.every(o => o.state > 0) && removeList.value.length === 0 && selectedNodes.value.length === 0) {
           removeFlag.value = true
           backFlag.value = true
           events.winCallback && events.winCallback()
@@ -62,12 +62,12 @@ export function useGame(config: GameConfig): Game {
       }, 100)
     }
     else {
+      events.clickCallback && events.clickCallback()
       const index = selectedNodes.value.findIndex(o => o.type === node.type)
       if (index > -1)
         selectedNodes.value.splice(index + 1, 0, node)
       else
         selectedNodes.value.push(node)
-      events.clickCallback && events.clickCallback()
       // 判断卡槽是否已满，即失败
       if (selectedNodes.value.length === 7) {
         removeFlag.value = true
