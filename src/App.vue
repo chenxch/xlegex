@@ -81,7 +81,19 @@ function handleLose() {
   loseAudioRef.value?.play()
   setTimeout(() => {
     alert('槽位已满，再接再厉~')
-    window.location.reload()
+    // window.location.reload()
+    nodes.value = []
+    removeList.value = []
+    selectedNodes.value = []
+    curLevel.value = 0
+    showTip.value = true
+    setTimeout(() => {
+      showTip.value = false
+    }, 1500)
+    setTimeout(() => {
+      initData(LevelConfig[curLevel.value])
+      curLevel.value++
+    }, 2000)
   }, 500)
 }
 
