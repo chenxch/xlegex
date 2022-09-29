@@ -1,4 +1,5 @@
-<img src="https://cdn.staticaly.com/gh/chenxch/pic-image@master/20220929/image-31.5nr6vc3ogf40.webp" />
+<img src="https://cdn.staticaly.com/gh/chenxch/pic-image@master/20220929/image-31.5wzs9gnp33k.webp" />
+
 # xlegex / x了个X
 
 This is a match-3 game, a simplified version of the sheep, currently based on rabbits, you can customize your own game based on this.
