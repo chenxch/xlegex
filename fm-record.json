@@ -1,0 +1,373 @@
+{
+	"552121a8d40ee5639c9bbb98c58597f3": {
+		"relativePath": "src/assets/vue.svg",
+		"size": 0.466796875,
+		"oldSize": 0.484375,
+		"ratio": -0.03629032258064513,
+		"time(ms)": 5180
+	},
+	"ecf43bf705947aea09bd78ba3f7a63ae": {
+		"relativePath": "src/assets/10.png",
+		"size": 13.8359375,
+		"oldSize": 14.783203125,
+		"ratio": -0.06407715682388693,
+		"time(ms)": 6676
+	},
+	"81775bba0d6815400a88044b81e7b912": {
+		"relativePath": "src/assets/12.png",
+		"size": 14.650390625,
+		"oldSize": 15.234375,
+		"ratio": -0.03833333333333333,
+		"time(ms)": 6675
+	},
+	"f2b4dcb4ea4d2cc360040b7ba64d96fa": {
+		"relativePath": "src/assets/11.png",
+		"size": 11.53515625,
+		"oldSize": 12.484375,
+		"ratio": -0.07603254067584475,
+		"time(ms)": 6677
+	},
+	"4d734f1df46a13dd8e53b6f38bf645bf": {
+		"relativePath": "src/assets/1.png",
+		"size": 13.68359375,
+		"oldSize": 15.54296875,
+		"ratio": -0.11962804724805232,
+		"time(ms)": 6680
+	},
+	"03c3b0169c0d5e4f7cb64b8b4fd69035": {
+		"relativePath": "src/assets/13.png",
+		"size": 13.10546875,
+		"oldSize": 14.046875,
+		"ratio": -0.06701890989988879,
+		"time(ms)": 6678
+	},
+	"b46429610bf2e1782489a829e8304c65": {
+		"relativePath": "src/assets/4.png",
+		"size": 14.7197265625,
+		"oldSize": 15.712890625,
+		"ratio": -0.06320696084524546,
+		"time(ms)": 6676
+	},
+	"a088dc55fcd805c39abfa1a13a4cdc66": {
+		"relativePath": "src/assets/3.png",
+		"size": 16.818359375,
+		"oldSize": 17.158203125,
+		"ratio": -0.019806488332384742,
+		"time(ms)": 6678
+	},
+	"1e819464f50173a52d25bac0b166fd6d": {
+		"relativePath": "src/assets/6.png",
+		"size": 13.4208984375,
+		"oldSize": 14.4072265625,
+		"ratio": -0.06846065207076524,
+		"time(ms)": 6675
+	},
+	"d8c52deff6007961703dd066cc148393": {
+		"relativePath": "src/assets/9.png",
+		"size": 10.8583984375,
+		"oldSize": 11.771484375,
+		"ratio": -0.077567612410818,
+		"time(ms)": 6674
+	},
+	"f1cc4101d3aa4204e74ed4662fee80bf": {
+		"relativePath": "src/assets/7.png",
+		"size": 12.974609375,
+		"oldSize": 14.1943359375,
+		"ratio": -0.08593051255589956,
+		"time(ms)": 6676
+	},
+	"2ef10aff69707808de07ef4a2bb2dd12": {
+		"relativePath": "src/assets/5.png",
+		"size": 10.8330078125,
+		"oldSize": 12.2080078125,
+		"ratio": -0.11263098952083839,
+		"time(ms)": 6678
+	},
+	"8e02f5a00d99d7a7c25a8c5078707f29": {
+		"relativePath": "src/assets/2.png",
+		"size": 12.99609375,
+		"oldSize": 14.1318359375,
+		"ratio": -0.08036763181535489,
+		"time(ms)": 6682
+	},
+	"eda90d1e32a91377e230c999fb0fa944": {
+		"relativePath": "src/assets/tutu/1.png",
+		"size": 7.0546875,
+		"oldSize": 8.4931640625,
+		"ratio": -0.16936874784408418,
+		"time(ms)": 6676
+	},
+	"3520f0ed75fc7f05dba5533d970d9c3b": {
+		"relativePath": "src/assets/tutu/8.png",
+		"size": 7.2734375,
+		"oldSize": 8.0380859375,
+		"ratio": -0.09512817397643059,
+		"time(ms)": 6683
+	},
+	"81cbd195b4f211b58b440ffce48fe678": {
+		"relativePath": "src/assets/5.jpg",
+		"size": 12.78515625,
+		"oldSize": 30.154296875,
+		"ratio": -0.5760088088606775,
+		"time(ms)": 6691
+	},
+	"92777293b432717e257f5ae633571e57": {
+		"relativePath": "src/assets/tutu/4.png",
+		"size": 7.482421875,
+		"oldSize": 9.0751953125,
+		"ratio": -0.17550844721833636,
+		"time(ms)": 6685
+	},
+	"8a7d852cbf1e8a729edbea69dc4ff216": {
+		"relativePath": "src/assets/tutu/9.png",
+		"size": 5.9794921875,
+		"oldSize": 7.4521484375,
+		"ratio": -0.19761499148211248,
+		"time(ms)": 6685
+	},
+	"89b407657390ad24522ecc9dd196a488": {
+		"relativePath": "src/assets/tutu/11.png",
+		"size": 12.2724609375,
+		"oldSize": 12.87109375,
+		"ratio": -0.046509863429438525,
+		"time(ms)": 6688
+	},
+	"51d9f520ed1803329a9d933779e3ac0f": {
+		"relativePath": "src/assets/tutu/3.png",
+		"size": 7.12109375,
+		"oldSize": 8.99609375,
+		"ratio": -0.2084237950499349,
+		"time(ms)": 6687
+	},
+	"7efdf3e6c734df6da3917bdc75231c27": {
+		"relativePath": "src/assets/8.png",
+		"size": 16.31640625,
+		"oldSize": 16.4794921875,
+		"ratio": -0.009896296296296292,
+		"time(ms)": 6692
+	},
+	"33053a44fc662bafb31cac24385157d8": {
+		"relativePath": "src/assets/tutu/10.png",
+		"size": 7.7734375,
+		"oldSize": 8.7451171875,
+		"ratio": -0.11111111111111116,
+		"time(ms)": 6692
+	},
+	"20b127b4b2b838e5b278f05d576093ed": {
+		"relativePath": "src/assets/tutu/12.png",
+		"size": 12.041015625,
+		"oldSize": 12.654296875,
+		"ratio": -0.048464269177342145,
+		"time(ms)": 6692
+	},
+	"5bd921ce2438ed8347290ea28281a8ff": {
+		"relativePath": "src/assets/tutu/5.png",
+		"size": 7.404296875,
+		"oldSize": 9.001953125,
+		"ratio": -0.17747884573660233,
+		"time(ms)": 6692
+	},
+	"49e80b1cbe87346944d500063cf15a49": {
+		"relativePath": "src/assets/tutu2/1.png",
+		"size": 6.0224609375,
+		"oldSize": 6.9521484375,
+		"ratio": -0.13372664700098325,
+		"time(ms)": 6699
+	},
+	"60c8b79f6fc41c841b95aafed216914c": {
+		"relativePath": "src/assets/tutu/6.png",
+		"size": 8.5009765625,
+		"oldSize": 9.634765625,
+		"ratio": -0.1176768700587878,
+		"time(ms)": 6700
+	},
+	"a1c33e4c016b8b6666e798c6990acd2e": {
+		"relativePath": "src/assets/tutu2/2.png",
+		"size": 6.6025390625,
+		"oldSize": 7.5400390625,
+		"ratio": -0.12433622587747706,
+		"time(ms)": 6698
+	},
+	"af07fc8cb0ff52cbc150d751fd6cc268": {
+		"relativePath": "src/assets/tutu/2.png",
+		"size": 7.6875,
+		"oldSize": 9.3359375,
+		"ratio": -0.1765690376569038,
+		"time(ms)": 6702
+	},
+	"31b9bea9185545f4e96aa1d50c3c33ca": {
+		"relativePath": "src/assets/tutu/7.png",
+		"size": 8.0166015625,
+		"oldSize": 8.6875,
+		"ratio": -0.07722571942446044,
+		"time(ms)": 6701
+	},
+	"8a5d0e30851035d037f45fa4dde69401": {
+		"relativePath": "src/assets/tutu2/10.png",
+		"size": 7.0263671875,
+		"oldSize": 7.4345703125,
+		"ratio": -0.05490608170235123,
+		"time(ms)": 6700
+	},
+	"0e15ba6034ed361b81823d9217690c5a": {
+		"relativePath": "src/assets/tutu2/4.png",
+		"size": 6.224609375,
+		"oldSize": 7.1455078125,
+		"ratio": -0.12887795544622116,
+		"time(ms)": 6699
+	},
+	"f5142cdd07c59627cfd95b807059b38e": {
+		"relativePath": "src/assets/tutu2/11.png",
+		"size": 10.537109375,
+		"oldSize": 11.5400390625,
+		"ratio": -0.08690869086908692,
+		"time(ms)": 6702
+	},
+	"3a85e18b89c8a2d871b846d5a6994230": {
+		"relativePath": "src/assets/tutu2/5.png",
+		"size": 6.17578125,
+		"oldSize": 7.0888671875,
+		"ratio": -0.12880562060889933,
+		"time(ms)": 6700
+	},
+	"d7c0627be3aaa1e1b5f548745fa9bcb7": {
+		"relativePath": "src/assets/tutu2/9.png",
+		"size": 5.4404296875,
+		"oldSize": 5.9697265625,
+		"ratio": -0.08866350400785217,
+		"time(ms)": 6698
+	},
+	"63c9e00f0f5a8a99c15e6d304cae7faf": {
+		"relativePath": "src/assets/tutu2/12.png",
+		"size": 9.8828125,
+		"oldSize": 10.59765625,
+		"ratio": -0.06745300405455212,
+		"time(ms)": 6703
+	},
+	"900afd57ced4f85b632c86f375cf3143": {
+		"relativePath": "src/assets/tutu2/8.png",
+		"size": 6.126953125,
+		"oldSize": 6.8388671875,
+		"ratio": -0.10409824360988151,
+		"time(ms)": 6700
+	},
+	"dcc173af4746233271796ec7e934ff41": {
+		"relativePath": "src/assets/tutu/13.png",
+		"size": 11.185546875,
+		"oldSize": 11.5341796875,
+		"ratio": -0.03022606045212095,
+		"time(ms)": 6707
+	},
+	"4cff8ce2b179fda3fceb0045c44d6759": {
+		"relativePath": "src/assets/tutu2/7.png",
+		"size": 6.3310546875,
+		"oldSize": 7.013671875,
+		"ratio": -0.09732664995822893,
+		"time(ms)": 6702
+	},
+	"17bb80d93ca92f56385beff44133809f": {
+		"relativePath": "src/assets/4.jpg",
+		"size": 4.8828125,
+		"oldSize": 8.8720703125,
+		"ratio": -0.44964226747385805,
+		"time(ms)": 6871
+	},
+	"d04dfc6d9c09153d8920ed5f07456a8c": {
+		"relativePath": "src/assets/6.jpg",
+		"size": 9.2919921875,
+		"oldSize": 23.0400390625,
+		"ratio": -0.5967024117322934,
+		"time(ms)": 6870
+	},
+	"4309c71aa69151c156228875e2fce876": {
+		"relativePath": "src/assets/tutu2/14.png",
+		"size": 10.646484375,
+		"oldSize": 10.8193359375,
+		"ratio": -0.015976171134578943,
+		"time(ms)": 6863
+	},
+	"c4a03482ab7347e0cbd8afd53ea6071a": {
+		"relativePath": "src/assets/tutu2/13.png",
+		"size": 9.462890625,
+		"oldSize": 9.998046875,
+		"ratio": -0.05352607931236575,
+		"time(ms)": 6865
+	},
+	"2211c5b202f3e9daa3cf6a006e74d69e": {
+		"relativePath": "src/assets/tutu2/15.png",
+		"size": 10.7607421875,
+		"oldSize": 11.1748046875,
+		"ratio": -0.037053220309359425,
+		"time(ms)": 6864
+	},
+	"609bdff5c8b1c388dae0b1b53782491c": {
+		"relativePath": "src/assets/tutu2/3.png",
+		"size": 5.64453125,
+		"oldSize": 6.7802734375,
+		"ratio": -0.16750684142301597,
+		"time(ms)": 6863
+	},
+	"3adc8e3d3526b6f5154307fa17016bc9": {
+		"relativePath": "src/assets/7.jpg",
+		"size": 18.5869140625,
+		"oldSize": 48.224609375,
+		"ratio": -0.6145761613543397,
+		"time(ms)": 6875
+	},
+	"3ef8c34492d94d6b1314eedf3a41818b": {
+		"relativePath": "src/assets/2.jpg",
+		"size": 18.259765625,
+		"oldSize": 77.2197265625,
+		"ratio": -0.7635349613648148,
+		"time(ms)": 6880
+	},
+	"46280a258b07ad2a987c52b50495cdb3": {
+		"relativePath": "src/assets/1.jpg",
+		"size": 16.45703125,
+		"oldSize": 40.578125,
+		"ratio": -0.5944358875625722,
+		"time(ms)": 6891
+	},
+	"acb751986c16ded1c1d9f0dcfb53049a": {
+		"relativePath": "src/assets/tutu2/6.png",
+		"size": 7.71875,
+		"oldSize": 8.5546875,
+		"ratio": -0.09771689497716896,
+		"time(ms)": 7337
+	},
+	"cd0a5910ce1cbd17ce98d92242d7a9b8": {
+		"relativePath": "src/assets/9.jpg",
+		"size": 114.6162109375,
+		"oldSize": 129.419921875,
+		"ratio": -0.11438510179134664,
+		"time(ms)": 10942
+	},
+	"ffe378285d44652962bc199689e19218": {
+		"relativePath": "src/assets/3.jpg",
+		"size": 139.5849609375,
+		"oldSize": 147.0849609375,
+		"ratio": -0.05099093715765357,
+		"time(ms)": 11054
+	},
+	"ac9c45026245d5be29cfa667904afaff": {
+		"relativePath": "src/assets/10.jpg",
+		"size": 122.322265625,
+		"oldSize": 128.314453125,
+		"ratio": -0.04669924045237983,
+		"time(ms)": 11063
+	},
+	"49ccc3f3fca03ff570b2b00fbe561d30": {
+		"relativePath": "src/assets/11.jpg",
+		"size": 124.7939453125,
+		"oldSize": 125.755859375,
+		"ratio": -0.007649059592774954,
+		"time(ms)": 11504
+	},
+	"f988b36429f0a47df99b35a03cd55acc": {
+		"relativePath": "src/assets/8.jpg",
+		"size": 153.6318359375,
+		"oldSize": 157.9990234375,
+		"ratio": -0.027640598055516108,
+		"time(ms)": 11762
+	}
+}
