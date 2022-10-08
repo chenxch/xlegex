@@ -9,6 +9,7 @@ const clickAudioRef = ref<HTMLAudioElement | undefined>()
 const dropAudioRef = ref<HTMLAudioElement | undefined>()
 const winAudioRef = ref<HTMLAudioElement | undefined>()
 const loseAudioRef = ref<HTMLAudioElement | undefined>()
+const welAudioRef = ref<HTMLAudioElement | undefined>()
 const curLevel = ref(1)
 const showTip = ref(false)
 const LevelConfig = [
@@ -85,6 +86,7 @@ function handleLose() {
     nodes.value = []
     removeList.value = []
     selectedNodes.value = []
+    welAudioRef.value?.play()
     curLevel.value = 0
     showTip.value = true
     setTimeout(() => {
@@ -206,6 +208,12 @@ onMounted(() => {
       style="display: none;"
       controls
       src="./audio/lose.mp3"
+    />
+    <audio
+      ref="welAudioRef"
+      style="display: none;"
+      controls
+      src="./audio/welcome.mp3"
     />
   </div>
 </template>
