@@ -1,5 +1,13 @@
 <img src="https://cdn.staticaly.com/gh/chenxch/pic-image@master/20220929/image-31.5wzs9gnp33k.webp" />
 
+
+## ⭐ Stargazers
+
+Many thanks to the kind individuals who leave a star.
+Your support is much appreciated!
+[![Stargazers for xlegex}](https://reporoster.com/stars/chenxch/xlegex)](https://github.com/chenxch/xlegex/stargazers)
+
+
 # xlegex / x了个X
 
 This is a match-3 game, a simplified version of the sheep, currently based on rabbits, you can customize your own game based on this.
@@ -86,4 +94,3 @@ initData()
 ## Related Articles / 相关文章
 [juejin/掘金](https://juejin.cn/post/7147245442172977189)
 
-[![Stargazers for xlegex}](https://reporoster.com/stars/chenxch/xlegex)](https://github.com/chenxch/xlegex/stargazers)
