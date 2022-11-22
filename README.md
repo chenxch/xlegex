@@ -85,3 +85,5 @@ initData()
 
 ## Related Articles / 相关文章
 [juejin/掘金](https://juejin.cn/post/7147245442172977189)
+
+[![Stargazers for {project}](https://reporoster.com/stars/bcakmakoglu/chenxch/xlegex)](https://github.com/chenxch/xlegex/stargazers)
