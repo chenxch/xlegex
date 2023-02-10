@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "fm && vue-tsc --noEmit && vite build",
+    "build": "vue-tsc --noEmit && vite build",
     "preview": "vite preview",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix"
@@ -23,7 +23,6 @@
     "@types/node": "^18.7.18",
     "@vitejs/plugin-vue": "^3.1.0",
     "eslint": "^8.23.1",
-    "fast-imagemin-cli": "^0.0.1",
     "typescript": "^4.6.4",
     "unocss": "^0.45.21",
     "vite": "^3.1.0",
